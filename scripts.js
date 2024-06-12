@@ -1,18 +1,17 @@
-const passwordLength = 12;
-const includeLowercase = true;
-const includeUpperCase = true;
-const includeNumbers = true;
-const includeSpecialChars = true;
-
-let allowedChars = "";
-let password = "";
-
-
 function generatePassword(length,includeLowercase,includeUpperCase,includeSpecialChars, includeNumbers){
+
+  let allowedChars = "";
+  let password = "";
+
   let lowerCase = "abcdefghijklmnopqrstuvwxyz";
   let upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let specialChars = "!@#$%^&*_+=-";
   let numbers = "0123456789";
+
+  allowedChars += includeLowercase ? lowerCase :"";
+  allowedChars += includeUpperCase ? upperCase : "";
+  allowedChars += includeSpecialChars ? specialChars: "";
+  allowedChars += includeNumbers ? numbers: "";
 
   if(length < 0){
     return "The password length must be atleast one.";
@@ -20,18 +19,21 @@ function generatePassword(length,includeLowercase,includeUpperCase,includeSpecia
   else if(length === 0){
     return "You need to select atleast one option";
   }
-  for(i = 0; i <= length; i++){
-      allowedChars += lowerCase;
-      allowedChars += upperCase;
-      allowedChars += specialChars;
-      allowedChars += numbers;
+  for(i = 0; i < length; i++){
+   const randomIndex = Math.random() * allowedChars.length;
+   password += allowedChars[randomIndex];
   }
 
-   password = Math.floor(Math.random() * allowedChars);
-
+  return password;
   
 }
 
- let generatedPassword = generatePassword(length,includeLowercase,includeUpperCase,includeSpecialChars, includeNumbers);
+const passwordLength = 12;
+const includeLowercase = true;
+const includeUpperCase = true;
+const includeNumbers = true;
+const includeSpecialChars = true;
+
+ const password = generatePassword(passwordLength, includeLowercase, includeUpperCase,includeSpecialChars, includeNumbers);
 
  console.log(password);
