@@ -1,25 +1,28 @@
 //A program that allows three users to key in their names, email addresses and password then display the details on the document.
 
-//selecting the entered name, email and password from the input fields
-let fullName = document.getElementById('fullName').value;
-let enteredEmail = document.getElementById('emailAddess');
 let enteredPassword = document.getElementById('enteredPassword').value;
 
 
 //Creating a constructor to accept the details of the three persons
-function Persons(names, emails, passwords){
-  this.names = names;
-  this.emails = emails;
-  this.passwoeds = passwords;
+function Persons(userName, userEmail){
+  this.name = userName;
+  this.email = userEmail;
+  // this.enteredPassword = enteredPassword;
 }
 
-// Creating 
-const Person1 = new Persons(fullName, enteredEmail, enteredPassword);
-Person1.names;
 let personNames = document.getElementById('personNames');
+
 const submitButton = document.getElementById('submitDetails');
   submitButton.addEventListener("click", () =>{
-    personNames.textContent = Person1.names + " " + Person1.emails;
+
+    //selecting the entered name, email and password from the input fields
+    let inputName = document.getElementById('fullName').value;
+    let inputEmail = document.getElementById('emailAddess').value;
+
+    // Creating of the object
+    const Person1 = new Persons(inputName, inputEmail);
+    
+    personNames.textContent = Person1.name + " " + Person1.email;
   });
 
 
