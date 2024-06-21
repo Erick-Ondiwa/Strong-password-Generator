@@ -21,8 +21,31 @@ const submitButton = document.getElementById('submitDetails');
 
     // Creating of the object
     const Person1 = new Persons(inputName, inputEmail);
-    
-    personNames.textContent = Person1.name + " " + Person1.email;
+
+    let mr = document.getElementById('mr');
+    let ms = document.getElementById('ms');
+    let phd = document.getElementById('phd');
+    function computeTitle(){
+      let title;
+      if(mr.checked){
+        title = "Mr.";
+      }
+      else if(ms.checked){
+        title = "Ms.";
+      }
+      else if(phd.checked){
+        title = "PhD.";
+      }
+      else{
+        return "You need to select atleast one option as a title";
+      }
+
+      return title;
+    }
+
+    let title = computeTitle();
+
+    personNames.textContent = title + " " +  Person1.name + " " + Person1.email;
   });
 
 
